@@ -19,6 +19,13 @@ public class MainCalcScreen extends AppCompatActivity {
     //possible state: nan, sum, sub, mul, div
 
 
+
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,8 +190,9 @@ public class MainCalcScreen extends AppCompatActivity {
 
                 if (operator == false) {
                     operator = true;
-                    result = result + Long.parseLong(results_field.getText().toString());
+                    result = Long.parseLong(results_field.getText().toString());
                     Log.d("tag_false",Long.toString(result));
+
                     results_field.setText("0");
                 } else
                 if (operator == true){
@@ -204,7 +212,7 @@ public class MainCalcScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if (operator == false) {
                     operator = true;
-                    result = result - Long.parseLong(results_field.getText().toString());
+                   result = Long.parseLong(results_field.getText().toString());
                     Log.d("tag_false",Long.toString(result));
                     results_field.setText("0");
                 } else
@@ -226,7 +234,7 @@ public class MainCalcScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if (operator == false) {
                     operator = true;
-                    result = result / Long.parseLong(results_field.getText().toString());
+                    result = Long.parseLong(results_field.getText().toString());
                     Log.d("tag_false",Long.toString(result));
                     results_field.setText("0");
                 } else
@@ -247,7 +255,7 @@ public class MainCalcScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if (operator == false) {
                     operator = true;
-                    result = result * Long.parseLong(results_field.getText().toString());
+                    result = Long.parseLong(results_field.getText().toString());
                     Log.d("tag_false",Long.toString(result));
                     results_field.setText("0");
                 } else
