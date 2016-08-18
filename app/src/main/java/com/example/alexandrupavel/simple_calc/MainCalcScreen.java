@@ -15,6 +15,8 @@ public class MainCalcScreen extends AppCompatActivity {
     long result=0;
     long val_temp=0;
     boolean operator = false;
+    String last_op = "nan";
+    //possible state: nan, sum, sub, mul, div
 
 
     @Override
@@ -169,53 +171,137 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("0");
                     result = 0;
 
+
+                    Log.d("tag_clear",Long.toString(result));
+
             }
         });
 
         final Button button_sum = (Button) findViewById(R.id.button_sum);
         button_sum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 if (operator == false) {
                     operator = true;
                     result = result + Long.parseLong(results_field.getText().toString());
-                    Log.d("tag_true",Long.toString(result));
+                    Log.d("tag_false",Long.toString(result));
                     results_field.setText("0");
                 } else
                 if (operator == true){
 
                     result = result + Long.parseLong(results_field.getText().toString());
-                    Log.d("tag_false",Long.toString(result));
+                    Log.d("tag_true",Long.toString(result));
                     results_field.setText("0");
                 }
 
                results_field.setText(Long.toString(result));
+                last_op="sum";
 
             }
         });
         final Button button_substract = (Button) findViewById(R.id.button_substract);
-        button_clear.setOnClickListener(new View.OnClickListener() {
+        button_substract.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                results_field.setText("");
+                if (operator == false) {
+                    operator = true;
+                    result = result - Long.parseLong(results_field.getText().toString());
+                    Log.d("tag_false",Long.toString(result));
+                    results_field.setText("0");
+                } else
+                if (operator == true){
+
+                    result = result - Long.parseLong(results_field.getText().toString());
+                    Log.d("tag_true",Long.toString(result));
+                    results_field.setText("0");
+                }
+
+                results_field.setText(Long.toString(result));
+                last_op="sub";
+
+
             }
         });
         final Button button_divide = (Button) findViewById(R.id.button_divide);
-        button_clear.setOnClickListener(new View.OnClickListener() {
+        button_divide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                results_field.setText("");
+                if (operator == false) {
+                    operator = true;
+                    result = result / Long.parseLong(results_field.getText().toString());
+                    Log.d("tag_false",Long.toString(result));
+                    results_field.setText("0");
+                } else
+                if (operator == true){
+
+                    result = result / Long.parseLong(results_field.getText().toString());
+                    Log.d("tag_true",Long.toString(result));
+                    results_field.setText("0");
+                }
+
+                results_field.setText(Long.toString(result));
+                last_op="div";
+
             }
         });
         final Button button_multiply = (Button) findViewById(R.id.button_multiply);
-        button_clear.setOnClickListener(new View.OnClickListener() {
+        button_multiply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                results_field.setText("");
+                if (operator == false) {
+                    operator = true;
+                    result = result * Long.parseLong(results_field.getText().toString());
+                    Log.d("tag_false",Long.toString(result));
+                    results_field.setText("0");
+                } else
+                if (operator == true){
+
+                    result = result * Long.parseLong(results_field.getText().toString());
+                    Log.d("tag_true",Long.toString(result));
+                    results_field.setText("0");
+                }
+
+                results_field.setText(Long.toString(result));
+                last_op="mul";
+
             }
         });
+
         final Button button_equals = (Button) findViewById(R.id.button_equals);
         button_equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                results_field.setText(Long.toString(result));
                 operator = false;
+
+
+                Log.d("tag_equals",Long.toString(result));
+                switch (last_op) {
+                    case "sum":{
+                        result = result + Long.parseLong(results_field.getText().toString());
+                        break;
+                    }
+                    case "sub":{
+                        result = result - Long.parseLong(results_field.getText().toString());
+                        break;
+
+                    }
+
+                    case "mul":{
+                        result = result * Long.parseLong(results_field.getText().toString());
+                        break;
+
+                    }
+
+                    case "div":{
+                        result = result / Long.parseLong(results_field.getText().toString());
+                        break;
+
+                    }
+
+
+                }
+
+                last_op="nan";
+                operator=false;
+                results_field.setText(Long.toString(result));
+                result=0;
             }
         });
 
