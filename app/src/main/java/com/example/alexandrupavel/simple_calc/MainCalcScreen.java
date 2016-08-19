@@ -121,12 +121,8 @@ public class MainCalcScreen extends AppCompatActivity {
         results_field.setText(Long.toString(result));
         last_op="div";
     }
-    void func_equ(){
+    void func_equ_switch(){
         final TextView results_field = (TextView) findViewById(R.id.results_field);
-        operator = false;
-
-
-        Log.d("tag_equals",Long.toString(result));
         switch (last_op) {
             case "sum":{
                 result = result + Long.parseLong(results_field.getText().toString());
@@ -152,6 +148,15 @@ public class MainCalcScreen extends AppCompatActivity {
 
 
         }
+    }
+
+    void func_equ(){
+        final TextView results_field = (TextView) findViewById(R.id.results_field);
+        operator = false;
+
+
+        Log.d("tag_equals",Long.toString(result));
+        func_equ_switch();
 
         last_op="nan";
         operator=false;
