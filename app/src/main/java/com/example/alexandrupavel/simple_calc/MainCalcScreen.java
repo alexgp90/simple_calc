@@ -16,7 +16,7 @@ public class MainCalcScreen extends AppCompatActivity {
     boolean operator = false;
     String last_op = "nan";
     //possible state: nan, sum, sub, mul, div
-    // call last op when doing  multiple
+
 
 
     void func_sum(){
@@ -26,10 +26,8 @@ public class MainCalcScreen extends AppCompatActivity {
             if (last_op.equals("nan")){
                 result = Long.parseLong(results_field.getText().toString());
             }else {
-
-                result = result+ Long.parseLong(results_field.getText().toString());
                 Log.d("tag_false", Long.toString(result));
-
+                func_equ_switch();
                 results_field.setText("0");
             }
         } else
@@ -52,9 +50,8 @@ public class MainCalcScreen extends AppCompatActivity {
             if (last_op.equals("nan")){
                 result = Long.parseLong(results_field.getText().toString());
             }else {
-                result = result - Long.parseLong(results_field.getText().toString());
-                Log.d("tag_false", Long.toString(result));
 
+                func_equ_switch();
                 results_field.setText("0");
             }
             Log.d("tag_false",Long.toString(result));
@@ -77,9 +74,8 @@ public class MainCalcScreen extends AppCompatActivity {
             if (last_op.equals("nan")){
                 result = Long.parseLong(results_field.getText().toString());
             }else {
-                result = result * Long.parseLong(results_field.getText().toString());
-                Log.d("tag_false", Long.toString(result));
 
+                func_equ_switch();
                 results_field.setText("0");
             }
             Log.d("tag_false",Long.toString(result));
@@ -103,12 +99,10 @@ public class MainCalcScreen extends AppCompatActivity {
             if (last_op.equals("nan")){
                 result = Long.parseLong(results_field.getText().toString());
             }else {
-                result = result / Long.parseLong(results_field.getText().toString());
                 Log.d("tag_false", Long.toString(result));
-
+                func_equ_switch();
                 results_field.setText("0");
             }
-            Log.d("tag_false",Long.toString(result));
             results_field.setText("0");
         } else
         if (operator == true){
@@ -154,7 +148,6 @@ public class MainCalcScreen extends AppCompatActivity {
         final TextView results_field = (TextView) findViewById(R.id.results_field);
         operator = false;
 
-
         Log.d("tag_equals",Long.toString(result));
         func_equ_switch();
 
@@ -190,7 +183,7 @@ public class MainCalcScreen extends AppCompatActivity {
                 if (results_field.getText().toString().equals("0")){
                     results_field.setText("");
                 }
-               results_field.append("0");
+                results_field.append("0");
 
             }
         });
@@ -319,13 +312,13 @@ public class MainCalcScreen extends AppCompatActivity {
         button_clear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                    operator = false;
-                    results_field.setText("0");
-                    result = 0;
-                    last_op="nan";
+                operator = false;
+                results_field.setText("0");
+                result = 0;
+                last_op="nan";
 
 
-                    Log.d("tag_clear",Long.toString(result));
+                Log.d("tag_clear",Long.toString(result));
 
             }
         });
@@ -333,14 +326,14 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_sum = (Button) findViewById(R.id.button_sum);
         button_sum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            func_sum();
+                func_sum();
 
             }
         });
         final Button button_substract = (Button) findViewById(R.id.button_substract);
         button_substract.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               func_sub();
+                func_sub();
 
 
             }
@@ -348,21 +341,21 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_divide = (Button) findViewById(R.id.button_divide);
         button_divide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               func_div();
+                func_div();
 
             }
         });
         final Button button_multiply = (Button) findViewById(R.id.button_multiply);
         button_multiply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               func_mul();
+                func_mul();
             }
         });
 
         final Button button_equals = (Button) findViewById(R.id.button_equals);
         button_equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            func_equ();
+                func_equ();
             }
         });
 
