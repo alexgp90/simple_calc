@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,7 +15,7 @@ public class MainCalcScreen extends AppCompatActivity {
 
     long result=0;
     boolean operator = false;
-    String last_op = "nan";    //possible state: nan, sum, sub, mul, div
+    String last_op = "sum";    //possible state: nan, sum, sub, mul, div
 
 
 
@@ -141,8 +143,6 @@ public class MainCalcScreen extends AppCompatActivity {
                 break;
 
             }
-
-
         }
     }
 
@@ -153,14 +153,19 @@ public class MainCalcScreen extends AppCompatActivity {
         Log.d("tag_equals",Long.toString(result));
         func_equ_switch();
 
-        last_op="nan";
+        last_op="sum"; //// FIXME: 22.08.2016 
         operator=false;
         results_field.setText(Long.toString(result));
         result=0;
 
 
     }
+    void func_debug(){
+        Log.d("result",Long.toString(result));
+        Log.d("operator",operator ? "true" : "false");
+        Log.d("last_op",last_op);
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +174,7 @@ public class MainCalcScreen extends AppCompatActivity {
 
         final TextView results_field = (TextView) findViewById(R.id.results_field);
         results_field.setText("0");
-
+        final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
 
         final Button button_0 = (Button) findViewById(R.id.button_0);
         button_0.setOnClickListener(new View.OnClickListener() {
@@ -182,20 +187,25 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("0");
+                button_0.startAnimation(shake);
 
             }
         });
         final Button button_1 = (Button) findViewById(R.id.button_1);
         button_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 if (operator == true || last_op.equals("nan")){
                     operator = false;
                     results_field.setText("0");
+
                 }
                 if (results_field.getText().toString().equals("0")){
                     results_field.setText("");
                 }
                 results_field.append("1");
+                button_1.startAnimation(shake);
+                func_debug();
             }
         });
         final Button button_2 = (Button) findViewById(R.id.button_2);
@@ -209,6 +219,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("2");
+                button_2.startAnimation(shake);
             }
         });
         final Button button_3 = (Button) findViewById(R.id.button_3);
@@ -222,6 +233,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("3");
+                button_3.startAnimation(shake);
             }
         });
         final Button button_4 = (Button) findViewById(R.id.button_4);
@@ -235,6 +247,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("4");
+                button_4.startAnimation(shake);
             }
         });
         final Button button_5 = (Button) findViewById(R.id.button_5);
@@ -251,6 +264,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("5");
+                button_5.startAnimation(shake);
             }
         });
         final Button button_6 = (Button) findViewById(R.id.button_6);
@@ -264,6 +278,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("6");
+                button_6.startAnimation(shake);
             }
         });
         final Button button_7 = (Button) findViewById(R.id.button_7);
@@ -277,6 +292,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("7");
+                button_7.startAnimation(shake);
             }
         });
         final Button button_8 = (Button) findViewById(R.id.button_8);
@@ -290,6 +306,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("8");
+                button_8.startAnimation(shake);
             }
         });
         final Button button_9 = (Button) findViewById(R.id.button_9);
@@ -304,6 +321,7 @@ public class MainCalcScreen extends AppCompatActivity {
                 }
 
                 results_field.append("9");
+                button_9.startAnimation(shake);
             }
         });
         final Button button_clear = (Button) findViewById(R.id.button_clear);
@@ -313,11 +331,11 @@ public class MainCalcScreen extends AppCompatActivity {
                 operator = false;
                 results_field.setText("0");
                 result = 0;
-                last_op="nan";
+                last_op="sum";  // FIXME: 22.08.2016 
 
 
                 Log.d("tag_clear",Long.toString(result));
-
+                button_clear.startAnimation(shake);
             }
         });
 
@@ -325,14 +343,14 @@ public class MainCalcScreen extends AppCompatActivity {
         button_sum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 func_sum();
-
+                button_sum.startAnimation(shake);
             }
         });
         final Button button_substract = (Button) findViewById(R.id.button_substract);
         button_substract.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 func_sub();
-
+                button_substract.startAnimation(shake);
 
             }
         });
@@ -341,12 +359,14 @@ public class MainCalcScreen extends AppCompatActivity {
             public void onClick(View v) {
                 func_div();
 
+                button_divide.startAnimation(shake);
             }
         });
         final Button button_multiply = (Button) findViewById(R.id.button_multiply);
         button_multiply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 func_mul();
+                button_multiply.startAnimation(shake);
             }
         });
 
@@ -354,6 +374,9 @@ public class MainCalcScreen extends AppCompatActivity {
         button_equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 func_equ();
+
+
+                button_equals.startAnimation(shake);
             }
         });
 
