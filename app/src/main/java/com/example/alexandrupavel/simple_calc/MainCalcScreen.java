@@ -15,6 +15,7 @@ public class MainCalcScreen extends AppCompatActivity {
 
     long result=0;
     boolean operator = false;
+    boolean pressed_number = true;
     String last_op = "sum";    //possible state: nan, sum, sub, mul, div
 
 
@@ -143,6 +144,10 @@ public class MainCalcScreen extends AppCompatActivity {
                 break;
 
             }
+            case "nan":{
+                result=result;
+                break;
+            }
         }
     }
 
@@ -187,6 +192,7 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("0");
+                pressed_number = true;
                 button_0.startAnimation(shake);
 
             }
@@ -204,6 +210,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("1");
+                pressed_number = true;
+
                 button_1.startAnimation(shake);
                 func_debug();
             }
@@ -219,6 +227,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("2");
+                pressed_number = true;
+
                 button_2.startAnimation(shake);
             }
         });
@@ -233,6 +243,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("3");
+                pressed_number = true;
+
                 button_3.startAnimation(shake);
             }
         });
@@ -247,6 +259,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("4");
+                pressed_number = true;
+
                 button_4.startAnimation(shake);
             }
         });
@@ -264,6 +278,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("5");
+                pressed_number = true;
+
                 button_5.startAnimation(shake);
             }
         });
@@ -278,6 +294,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("6");
+                pressed_number = true;
+
                 button_6.startAnimation(shake);
             }
         });
@@ -292,6 +310,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("7");
+                pressed_number = true;
+
                 button_7.startAnimation(shake);
             }
         });
@@ -306,6 +326,8 @@ public class MainCalcScreen extends AppCompatActivity {
                     results_field.setText("");
                 }
                 results_field.append("8");
+                pressed_number = true;
+
                 button_8.startAnimation(shake);
             }
         });
@@ -321,6 +343,8 @@ public class MainCalcScreen extends AppCompatActivity {
                 }
 
                 results_field.append("9");
+                pressed_number = true;
+
                 button_9.startAnimation(shake);
             }
         });
@@ -331,10 +355,12 @@ public class MainCalcScreen extends AppCompatActivity {
                 operator = false;
                 results_field.setText("0");
                 result = 0;
-                last_op="sum";  // FIXME: 22.08.2016 
+               // last_op="sum";  // FIXME: 22.08.2016
 
 
                 Log.d("tag_clear",Long.toString(result));
+                pressed_number = false;
+
                 button_clear.startAnimation(shake);
             }
         });
@@ -342,6 +368,8 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_sum = (Button) findViewById(R.id.button_sum);
         button_sum.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                pressed_number = false;
+
                 func_sum();
                 button_sum.startAnimation(shake);
             }
@@ -349,6 +377,8 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_substract = (Button) findViewById(R.id.button_substract);
         button_substract.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                pressed_number = false;
+
                 func_sub();
                 button_substract.startAnimation(shake);
 
@@ -357,6 +387,8 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_divide = (Button) findViewById(R.id.button_divide);
         button_divide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                pressed_number = false;
+
                 func_div();
 
                 button_divide.startAnimation(shake);
@@ -365,6 +397,8 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_multiply = (Button) findViewById(R.id.button_multiply);
         button_multiply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                pressed_number = false;
+
                 func_mul();
                 button_multiply.startAnimation(shake);
             }
@@ -373,6 +407,8 @@ public class MainCalcScreen extends AppCompatActivity {
         final Button button_equals = (Button) findViewById(R.id.button_equals);
         button_equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                pressed_number = false;
+
                 func_equ();
 
 
