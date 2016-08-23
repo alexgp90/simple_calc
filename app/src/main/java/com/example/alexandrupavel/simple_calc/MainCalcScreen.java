@@ -158,7 +158,7 @@ public class MainCalcScreen extends AppCompatActivity {
         Log.d("tag_equals",Long.toString(result));
         func_equ_switch();
 
-        last_op="sum"; //// FIXME: 22.08.2016 
+        last_op="sum"; //// FIXME: 22.08.2016
         operator=false;
         results_field.setText(Long.toString(result));
         result=0;
